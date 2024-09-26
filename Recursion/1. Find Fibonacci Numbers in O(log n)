@@ -1,5 +1,5 @@
 Approach:
-  Using the formula F(n) = ((Φ^n)-(1-Φ)^n)/√5   where Φ = 1.618
+  Using the formula F(n) = (('Φ^n')-(1-Φ)^n)/√5   where Φ = 1.618
 
 Code:
   #include <iostream>
@@ -15,3 +15,8 @@ Code:
      cout<<round(s/sqrt(5))<<endl;
      return 0;
   }
+
+Time Complexity : O(log n)
+Space Complexity : O(1)
+
+Another Approach : Matrix Exponentiation (Not Necessary)
