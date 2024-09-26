@@ -1,0 +1,28 @@
+Approach : A number n is not prime if it is less than or equal to 1.
+           For any integer starting from 2, if 𝑖^2 is greater than n, then n is prime.
+           If n is divisible by any i (i.e., n mod i = 0), then n is not prime.
+   Reason : Any number 𝑛 that has a divisor must have at least one divisor less than or equal to its square root. If you check all numbers up to the square root of n and find no divisors, there’s no need to check numbers greater than the square root, as they would already have been accounted for as the complementary divisor.
+
+Code : 
+  #include <iostream>
+  #include <cmath> 
+  using namespace std;
+  
+  bool isPrime(int n, int i) {
+      if (n <= 1) return false; 
+      if (i * i > n) return true; 
+      if (n % i == 0) return false; 
+      return isPrime(n, i + 1); 
+  }
+  
+  int main() {
+      int n;
+      cin >> n;
+      cout << (isPrime(n, 2) ? "Prime" : "Not Prime") << endl;
+      return 0;
+  }
+
+Time Complexity : O(√n)
+Space Complexity : O(√n)
+
+Note : If you want to find a list of primes over a range use Seive of Eratosthenes
