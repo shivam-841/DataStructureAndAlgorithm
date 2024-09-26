@@ -1,0 +1,17 @@
+Approach:
+  Using the formula F(n) = ((Φ^n)-(1-Φ)^n)/√5   where Φ = 1.618
+
+Code:
+  #include <iostream>
+  #include <cmath>
+  using namespace std;
+  
+  int main() {
+     int n=9;
+     double t= pow(1.618,n);
+     double q=1-1.618;
+     double r=pow(q,n);
+     double s= t-r;
+     cout<<round(s/sqrt(5))<<endl;
+     return 0;
+  }
