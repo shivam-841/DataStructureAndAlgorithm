@@ -1,0 +1,20 @@
+Approach : Adding the current element in the mean of all the previous element i.e multiplied by the number of all previous elements then divided it by the total number of elements
+
+Code :
+  #include <iostream>
+  #include <string>
+  using namespace std;
+  
+  double rec(int arr[],int n){
+      if(n==1) return arr[n-1];
+      return (rec(arr, n - 1) * (n - 1) + arr[n - 1]) / n;
+  }
+  
+  int main() { 
+      int arr[5] = {1,2,3,4,5};
+      cout<<rec(arr,5)<<endl; 
+      return 0; 
+  }
+
+Time Complexity : O(n)
+Space Complexity : O(n)
