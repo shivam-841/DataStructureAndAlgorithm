@@ -1,0 +1,19 @@
+Approach: Take the last digit add it to the rest of the function where num is passed by divided by 10
+
+Code : 
+  #include <iostream>
+  using namespace std;
+  
+  int rec(int num){
+      if(num/10==0) return num;
+      return (num%10)+rec(num/10);
+  }
+  
+  int main() { 
+      int num = 123456;
+      cout<<rec(num)<<endl; 
+      return 0; 
+  }
+
+Time Complexity: O(n)
+Space Complexity: O(n) , n is the number of digits in the number
