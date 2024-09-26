@@ -1,0 +1,22 @@
+Approach : Take the last element and add to the function where passed rest of the string.
+
+Code :
+  #include <iostream>
+  #include <string>
+  using namespace std;
+  
+  string rec(string str){
+      if(str.empty()) return "";
+      char lastChar = str.back();
+      str.pop_back();
+      return lastChar+rec(str);
+  }
+  
+  int main() { 
+      string str="reverse";
+      cout<<rec(str)<<endl; 
+      return 0; 
+  }
+
+Time Complexity: O(n)
+Space Complexity: O(n)
