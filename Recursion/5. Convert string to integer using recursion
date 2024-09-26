@@ -1,0 +1,23 @@
+Approach : Take first index raise to power of its index in number and add rest of string to it.
+
+Code :
+  #include <iostream>
+  #include <string>
+  #include <cmath>
+  using namespace std;
+  
+  int rec(string str, int i){
+      if(i==str.size()-1) return str[i]-'0'; 
+      return (str[i]-'0')*pow(10,str.size()-1-i)+rec(str,i+1); 
+  }
+  
+  int main() { 
+      string str = "123456"; 
+      cout<<rec(str,0); 
+      return 0; 
+  }
+
+Time Complexity : O(nlogn)
+Space Complexity : O(n)
+
+Another Approach : We can use a global variable and can store the number there.
