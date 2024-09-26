@@ -1,0 +1,22 @@
+Approach : Add current index to the rest of the array 
+
+Code :
+  #include <iostream>
+  using namespace std;
+  
+  int rec_sum(int index,int arr[]){
+      if(index==3) return arr[index];
+      return arr[index]+rec_sum(index+1,arr);
+  }
+  
+  int main() 
+  {
+      int arr[4]={1,2,3,4};
+      cout<<rec_sum(0, arr);
+      return 0;
+  }
+
+Time Complexity : O(n)
+Space Complexity : O(n)
+
+Another Approach : Use Iteration method for Space Complexity O(1).
