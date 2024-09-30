@@ -1,0 +1,34 @@
+Approach : Take a empty string , iterate through the given string if next characters are same then skip it else add that in the empty string
+           If new string is created i.e use a flag to track it, then call the function again with new string
+
+Code :
+  class Solution {
+  public:
+    string rremove(string s) {
+        return removeAdjacent(s);
+    }
+  private:
+    string removeAdjacent(const string& s) {
+        string result;
+        bool changed = false;
+
+        for (int i = 0; i < s.size(); ++i) {
+
+            if (i + 1 < s.size() && s[i] == s[i + 1]) {
+                changed = true;
+                while (i + 1 < s.size() && s[i] == s[i + 1]) {
+                    ++i;
+                }
+            } else {
+                result += s[i];
+            }
+        }
+
+        return changed ? removeAdjacent(result) : result;
+    }
+};
+
+Time Complexity : O(n)
+Space Complexity : O(n)
+
+Note : Use simple mind, don't overcomplicate things
