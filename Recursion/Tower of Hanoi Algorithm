@@ -1,0 +1,15 @@
+Approach: Move n-1 disc from A to B 
+          Move one largest disc from A to C
+          Move n-1 disc from B to C
+
+Code :
+    long long sum=0;
+    long long toh(int n, int from, int to, int aux) {
+        if(n==0) return sum;
+        toh(n-1,from,aux,to);
+        cout<<"move disk "<<n<<" from rod "<<from<<" to rod "<<to<<endl;
+        sum++;
+        toh(n-1,aux,to,from);
+    }
+
+Note : the cout statement also moving one disc so be careful if you have to use this in another questions
