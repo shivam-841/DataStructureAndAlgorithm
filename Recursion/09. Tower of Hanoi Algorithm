@@ -13,3 +13,6 @@ Code :
     }
 
 Note : the cout statement also moving one disc so be careful if you have to use this in another questions
+
+Time Complexity: O(2^n)
+Space Complexity: O(n)
