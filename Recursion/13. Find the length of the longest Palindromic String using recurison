@@ -1,0 +1,38 @@
+Approach: Take string remove first character and find the longest palindromic string from that string, similary remove the last string and find the longest palindromic string from that string, and return the max of it.
+
+Code:
+  #include <iostream>
+  using namespace std;
+  
+  int max(int x, int y)
+  {
+  	return (x > y) ? x : y;
+  }
+  
+  int longestPalindromic(string str, 
+  			int i, int j, int count)
+  {
+      if(i>j) return count;
+      if(i==j) return count+1;
+      if(str[i]==str[j]){
+          count = longestPalindromic(str,i+1,j-1,count+2);
+          return(max(count,max(longestPalindromic(str,i+1,j,0),longestPalindromic(str,i,j-1,0))));
+      }
+      return max(longestPalindromic(str,i+1,j,0),longestPalindromic(str,i,j-1,0));
+  }
+  
+  int longest_palindromic_substr(string str)
+  {
+  	return longestPalindromic(str,0,str.length() - 1, 0);
+  }
+  
+  int main()
+  {
+  	string str = "banana";
+  	
+  	cout << longest_palindromic_substr(str);
+  	return 0;
+  }
+
+Time Complexity: O(2^n)
+Space Complexity: O(n)
