@@ -1,0 +1,25 @@
+Approach : If LSB is 1 then return 1+function() and right shift the number by 1.
+
+Code :
+  #include <bits/stdc++.h>
+  using namespace std;
+  
+  int CountSetBits(int n)
+  {
+  	if (n == 0)
+  		return 0;
+  	if((n & 1) == 1)
+  		return 1 + CountSetBits(n >> 1);
+  	else
+  		return CountSetBits(n >> 1);
+  }
+  
+  int main()
+  {
+  	int n = 21;
+  	cout << CountSetBits(n) << endl;
+  	return 0;
+  }
+
+Time Complexity: O(log n)
+Space Complexity: O(log n)
