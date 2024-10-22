@@ -1,0 +1,43 @@
+Approach : Pop out the front element reverse rest of the queue and then push it.
+
+Code :
+
+  #include <bits/stdc++.h>
+  using namespace std;
+  
+  void printQueue(queue<long long int> Queue)
+  {
+  	while (!Queue.empty()) {
+  		cout << Queue.front() << " ";
+  		Queue.pop();
+  	}
+  }
+  
+  void reverseQueue(queue<long long int>& q)
+  {
+      if(q.empty()) return;
+      int temp=q.front();
+      q.pop();
+      reverseQueue(q);
+      q.push(temp);
+  }
+  
+  int main()
+  {
+  	queue<long long int> Queue;
+  	Queue.push(1);
+  	Queue.push(2);
+  	Queue.push(3);
+  	Queue.push(4);
+  	Queue.push(5);
+  	Queue.push(6);
+  	Queue.push(7);
+  	Queue.push(8);
+  	Queue.push(9);
+  	Queue.push(10);
+  	reverseQueue(Queue);
+  	printQueue(Queue);
+  }
+
+Time Complexity: O(n)
+Space Complexity: O(n)
