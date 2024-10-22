@@ -1,0 +1,97 @@
+Printing Star Pyramid:
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+
+Code:
+  #include <iostream>
+  using namespace std;
+  
+  void printn(int n){
+      while(n>0){
+          cout<<"* ";
+          n--;
+      }
+      cout<<endl;
+  }
+  void print(int n){
+      if(n==0) return;
+      print(n-1);
+      printn(n);
+  }
+  
+  int main() {
+      int n=5;
+      print(n);
+      return 0;
+}
+--------------------------------------------------------------------------------------------------------------------
+        * 
+      * * 
+    * * * 
+  * * * * 
+* * * * * 
+
+Code:
+  #include <iostream>
+  using namespace std;
+  
+  void printn(int n,int k){
+      while(k>0){
+          cout<<"  ";
+          k--;
+      }
+      while(n>0){
+          cout<<"* ";
+          n--;
+      }
+      cout<<endl;
+  }
+  void print(int n,int k){
+      if(n==0) return;
+      print(n-1,k+1);
+      printn(n,k);
+  }
+  
+  int main() {
+      int n=5;
+      print(n,0);
+  
+      return 0;
+  }
+-----------------------------------------------------------------------------------------------------
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+
+Code: 
+  #include <iostream>
+  using namespace std;
+  
+  void printn(int n,int k){
+      while(k>0){
+          cout<<" ";
+          k--;
+      }
+      while(n>0){
+          cout<<"* ";
+          n--;
+      }
+      cout<<endl;
+  }
+  void print(int n,int k){
+      if(n==0) return;
+      print(n-1,k+1);
+      printn(n,k);
+  }
+  
+  int main() {
+      int n=5;
+      print(n,0);
+  
+      return 0;
+  }
