@@ -1,0 +1,42 @@
+Approach : Tackle one character of string once then recursive call the rest of the string
+           Conditions:
+             1. if space comes all number,positive and negative should be false.
+             2. if positive comes all number,positive and negative should be false.
+             3. if negative comes all number,positive and negative should be false.
+
+Code : 
+  class Solution {
+      int num =0;
+      bool number = false;
+      bool negative = false;
+      bool positive = false;
+  public:
+      int myAtoi(string s) {
+          if (s.empty()){
+              if(negative == true) return (-1)*num;
+              else return num;
+          } 
+          if (s[0]==' ' && number == false && positive==false && negative==false) return myAtoi(s.substr(1));
+          if (s[0]=='+' && number == false && negative == false && positive==false) {
+              positive = true;
+              return myAtoi(s.substr(1));
+          }
+          if (s[0]=='-' && number == false && positive == false && negative ==false){
+              negative = true;
+              return myAtoi(s.substr(1));
+          } 
+          if (s[0]>=48 && s[0]<=57){
+              number = true;
+              if (num > INT_MAX / 10 || (num == INT_MAX / 10 && (s[0]-'0') > INT_MAX % 10)) {
+                  return (negative == 0) ? INT_MAX : INT_MIN;
+              }
+              num =num*10+ (s[0]-'0');
+              return myAtoi(s.substr(1));
+          }
+          if(negative == true) return (-1)*num;
+                  else return num;
+      }
+  };
+
+Time Complexity: O(n)
+Space Complexity: O(n)
