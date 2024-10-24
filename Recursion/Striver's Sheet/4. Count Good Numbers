@@ -1,0 +1,29 @@
+Approach: Permutation and Combination , even numbers gonna comes (n+1)/2 and odd numbers gonna come n/2 times. Use formual to find good numbers.
+
+Code:
+  class Solution {
+  const int mod= 1e9+7;
+  long long myPow(long long x, long long n){
+      if(n == 0) return 1;
+      long long half = myPow (x, n/2);
+      if(n%2==0){
+          return (half * half)%mod;
+      }
+      else{
+          return (half * half * x)%mod;
+      }
+  }
+  public:
+      int countGoodNumbers(long long n) {
+          long long evenCount = (n+1)/2;
+          long long oddCount = n/2;
+  
+          long long even =  myPow(5.0,evenCount)%mod;
+          long long odd = myPow(4.0,oddCount)%mod;
+          long long result = (even * odd)%mod;
+          return (int) result;
+      }
+  };
+
+Time Complexity: O(logn)
+Space Complexity: O(logn)
