@@ -1,0 +1,24 @@
+Approach: Take first element and sort rest of the stack and place at its position i.e pushInStack()
+
+Code:
+  void pushInStack(stack<int>&s, int temp){
+      if(s.empty()||s.top()<temp){
+          s.push(temp);
+          return;
+      }
+      int topEle = s.top();
+      s.pop();
+      pushInStack(s,temp);
+      s.push(topEle);
+  }
+  void SortedStack :: sort()
+  {
+      if(s.empty()) return;
+      int temp = s.top();
+      s.pop();
+      sort();
+      pushInStack(s,temp);
+  }
+
+Time Complexity: O(n^2)
+Space Complexity: O(n)
