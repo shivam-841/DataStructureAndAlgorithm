@@ -1,0 +1,30 @@
+Approach: If number of open bracket is less than n, then call recursion by adding one open bracket, else if number of close bracket is less than number of open bracket, then call recursion by adding one close bracket.
+
+Code:
+  class Solution {
+  private:
+      void rec(string str, vector<string>&ans, int open, int close, int n){
+          if(str.size()==2*n){
+              ans.push_back(str);
+              return;
+          }
+          if(open<n){
+              rec(str+'(', ans, open+1, close, n);
+          }
+          if(close<open){
+              rec(str+')', ans, open, close+1, n);
+          }
+      }
+  public:
+      vector<string> generateParenthesis(int n) {
+          string str="";
+          vector<string>ans;
+          int open=0;
+          int close=0;
+          rec(str,ans,open,close,n);
+          return ans;
+      }
+  };
+
+Time Complexity: O(2^n) ( also you can write O(2^2n)
+Space Complexity: O(n)   (vector also takes space of O(2^2n)
