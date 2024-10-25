@@ -1,0 +1,30 @@
+Approach: Call recursion by adding once 0 and 1, if last one is added 1 then call recursion only for 0.
+
+Code:
+  class Solution{
+  private:
+      void rec(string str,vector<string>&ans, bool flag, int num){
+          if(str.size()==num){
+              ans.push_back(str);
+              return;
+          }
+          if(flag==false){
+              rec(str+'0',ans,flag,num);
+              rec(str+'1',ans,true,num);
+          }
+          else{
+              rec(str+'0',ans,false,num);
+          }
+      }
+  public:
+      vector<string> generateBinaryStrings(int num){
+          vector<string>ans;
+          string str ="";
+          bool flag = false;
+          rec(str,ans,flag,num);
+          return ans;
+      }
+  };
+
+Time Complexity: O(2^n * n)
+Space Complexity: O(2^n * n)
