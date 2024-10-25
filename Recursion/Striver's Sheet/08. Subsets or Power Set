@@ -1,0 +1,27 @@
+Approach: Taking element once and calling recursion and again skipping the element and calling recursion
+
+Code:
+  class Solution {
+  private:
+      void rec(vector<int>nums, vector<int>&vec, vector<vector<int>>& ans, int index){
+          if(index==nums.size()){
+              ans.push_back(vec);
+              return;
+          }
+          vec.push_back(nums[index]);
+          rec(nums,vec,ans,index+1);
+          vec.pop_back();
+          rec(nums,vec,ans,index+1);
+      }
+  public:
+      vector<vector<int>> subsets(vector<int>& nums) {
+          int index = 0;
+          vector<vector<int>>ans;
+          vector<int>vec;
+          rec(nums,vec,ans,index);
+          return ans;
+      }
+  };
+
+Time Complexity: O(2^n)
+Space Complexity: O(n)
