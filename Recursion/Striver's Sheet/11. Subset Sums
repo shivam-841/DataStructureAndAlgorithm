@@ -1,0 +1,21 @@
+Approach: Find all subsets and store it sum in a variable and when index reach to final index store it in final answer
+
+Code:
+  private:
+    void rec(vector<int>&arr, vector<int>&ans, int n, int sum, int index){
+        if(index == arr.size()) {
+            ans.push_back(sum);
+            return;
+        }
+        rec(arr,ans,n,sum+arr[index],index+1);
+        rec(arr,ans,n,sum,index+1);
+    }
+  public:
+    vector<int> subsetSums(vector<int> arr, int n) {
+        vector<int>ans;
+        rec(arr,ans,n,0,0);
+        return ans;
+    }
+
+Time Complexity: O(2^n)
+Space Complexity : O(n) for storing answers it will take 2^n
