@@ -30,3 +30,5 @@ Code:
 
   Time Complexity: O(C(9,k))
   Space Complexity: O(C(9,k))
+
+Note: If the elements of different vectors inside the 2d vector are same but elements are mixed, then start from one end like counting from one end and solve in increasingley manner
