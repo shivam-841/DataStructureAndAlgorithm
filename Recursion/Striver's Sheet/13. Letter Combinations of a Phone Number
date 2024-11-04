@@ -1,0 +1,41 @@
+Approach: Used for loop for each iteration of the recursion
+
+Code:
+  class Solution {
+  private:
+      void rec(vector<string>&ans, string&temp, string digits,int index){
+          if (index == digits.size()) {
+              ans.push_back(temp);
+              return;
+          }
+  
+          int number = digits[index] - '0';
+          std::string letters;
+  
+          if (number == 2) letters = "abc";
+          else if (number == 3) letters = "def";
+          else if (number == 4) letters = "ghi";
+          else if (number == 5) letters = "jkl";
+          else if (number == 6) letters = "mno";
+          else if (number == 7) letters = "pqrs";
+          else if (number == 8) letters = "tuv";
+          else if (number == 9) letters = "wxyz";
+  
+          for (char ch : letters) {
+              temp.push_back(ch); 
+              rec(ans, temp, digits, index + 1); 
+              temp.pop_back(); 
+          }
+      }
+  public:
+      vector<string> letterCombinations(string digits) {
+          if(digits.empty()) return {};
+          vector<string> ans;
+          string temp;
+          rec(ans,temp,digits,0);
+          return ans;
+      }
+  };
+
+Time Complexity: O(n * 4^n)
+Space Complexity: O(n * 4^n)
