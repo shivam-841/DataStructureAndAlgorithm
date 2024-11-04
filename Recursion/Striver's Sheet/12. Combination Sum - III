@@ -1,0 +1,32 @@
+Approach: call recursion inside the loop for 1 to 9, if you taken 1 then in next recursion all call should be after 1 and till 9 
+          when size == k check for n if zero push and return else directly return
+          
+Code:
+  class Solution {
+  private:
+      void rec(vector<int>&temp, vector<vector<int>>&ans, int k, int n,int num){
+          if(temp.size() == k){
+              if(n ==0)
+                  ans.push_back(temp);
+              return;
+          }
+  
+          for(int i=num;i<=9 && i<=n; i++){
+              temp.push_back(i);
+              rec(temp,ans,k,n-i,i+1);
+              temp.pop_back();
+          }
+      }
+  public:
+      vector<vector<int>> combinationSum3(int k, int n) {
+          if(k>n)
+              return {};
+          vector<vector<int>> ans;
+          vector<int>temp;
+          rec(temp,ans,k,n,1);
+          return ans;
+      }
+  };
+
+  Time Complexity: O(C(9,k))
+  Space Complexity: O(C(9,k))
