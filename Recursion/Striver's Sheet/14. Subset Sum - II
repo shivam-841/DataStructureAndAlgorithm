@@ -1,0 +1,29 @@
+Approach: Sort the elements and start from first element and including each of the next element generate subset , same iteration with others also.
+
+Code:
+  class Solution {
+  private:
+      void rec(vector<vector<int>>& ans, vector<int>& temp, vector<int>& nums, int index){
+          ans.push_back(temp); // Always add the current subset
+  
+          for (int i = index; i < nums.size(); i++) {
+              if (i > index && nums[i] == nums[i - 1]) {
+                  continue; // Skip duplicates
+              }
+              temp.push_back(nums[i]); // Include the current number
+              rec(ans, temp, nums, i + 1); // Move to the next index
+              temp.pop_back(); // Backtrack
+          }      
+      }
+  public:
+      vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+          vector<vector<int>> ans;
+          vector<int>temp;
+          sort(nums.begin(),nums.end());
+          rec(ans,temp,nums,0);
+          return ans;
+      }
+  };
+
+Time Complexity: O(2^n)
+Space Complexity: O(n)
