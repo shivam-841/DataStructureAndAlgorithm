@@ -1,0 +1,41 @@
+Approach: Taking first element and check if palindrome or not , if yes then push in temp and call recursion for other substring and if not then move to next.
+          Base condition when string is empty
+
+Code:
+  class Solution {
+  private:
+      bool check_palindrome(const string& s, int left, int right) {
+          while (left < right) {
+              if (s[left] != s[right]) return false;
+              ++left;
+              --right;
+          }
+          return true;
+      }
+  
+      void rec(vector<vector<string>>& ans, vector<string>& temp, const string& s, int start) {
+          if (start == s.size()) {
+              ans.push_back(temp);
+              return;
+          }
+          for (int i = start + 1; i <= s.size(); i++) {
+              string first_half = s.substr(start, i - start);
+              if (check_palindrome(s, start, i - 1)) {
+                  temp.push_back(first_half);
+                  rec(ans, temp, s, i);
+                  temp.pop_back();
+              }
+          }
+      }
+  
+  public:
+      vector<vector<string>> partition(string s) {
+          vector<vector<string>> ans;
+          vector<string> temp;
+          rec(ans, temp, s, 0);
+          return ans;
+      }
+  };
+
+Time Complexity: O(2^n * n)
+Space Complexity: O(n * 2^n)
