@@ -1,0 +1,50 @@
+Approach:
+  One queen should be on each row
+  go row by row
+  in a row, iterate over col if any position is attacked contiune
+                             else place queen there and call the recursion then remove the queen from there for next iteration of column
+  any position is attacke ony if -> a queen is in that column
+                                 -> a queen is in top left or right diagonal
+
+Code:
+  class Solution {
+  private:
+      bool isAttacked(const vector<string>& board, int n, int row, int col) {
+          for (int i = 0; i < row; i++) {
+              if (board[i][col] == 'Q') return true;  
+          }
+          for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+              if (board[i][j] == 'Q') return true; 
+          }
+          for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+              if (board[i][j] == 'Q') return true;  
+          }
+          return false;
+      }
+  
+      void solve(vector<vector<string>>& ans, vector<string>& board, int n, int row) {
+          if (row == n) {  
+              ans.push_back(board);  
+              return;
+          }
+  
+          for (int col = 0; col < n; col++) {
+              if (isAttacked(board, n, row, col)) continue;
+  
+              board[row][col] = 'Q';
+              solve(ans, board, n, row + 1); 
+              board[row][col] = '.';
+          }
+      }
+  
+  public:
+      vector<vector<string>> solveNQueens(int n) {
+          vector<vector<string>> ans;
+          vector<string> board(n, string(n, '.')); 
+          solve(ans, board, n, 0); 
+          return ans;
+      }
+  };
+
+Time Complexity: O(n!)
+Space Complexity: O(n) for the recursive stack
