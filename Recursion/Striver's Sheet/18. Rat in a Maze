@@ -1,0 +1,68 @@
+Approach: Mark the visited node 0, check whether if you can move in a direction if yes call the recursion and backtracking
+
+Code:
+  class Solution {
+    private:
+      bool canmove(vector<vector<int>>&mat,int i,int j){
+          if(i<0 || j<0 || i>mat.size()-1 || j>mat[0].size()-1)
+              return;
+          else if(mat[i][j]==1) return true;
+          else return false;
+      }
+      void rec(vector<string>&ans, string& temp, vector<vector<int>>&mat, int i, int j){
+          if(i==mat.size()-1 && j==mat[0].size()-1)
+          {
+               ans.push_back(temp);
+               return;
+          }
+          if(canmove(mat,i+1,j))
+          {
+              temp.append("D");
+              mat[i][j]=0;
+              rec(ans,temp,mat,i+1,j);
+              temp.pop_back();
+              mat[i][j]=1;
+              
+          }
+          if(canmove(mat,i,j+1))
+          {
+              temp.append("R");
+              mat[i][j]=0;
+              rec(ans,temp,mat,i,j+1);
+              temp.pop_back();
+              mat[i][j]=1;
+              
+          }
+          if(canmove(mat,i-1,j))
+          {
+              temp.append("U");
+              mat[i][j]=0;
+              rec(ans,temp,mat,i-1,j);
+              temp.pop_back();
+              mat[i][j]=1;
+              
+          }
+          if(canmove(mat,i,j-1))
+          {
+              temp.append("L");
+              mat[i][j]=0;
+              rec(ans,temp,mat,i,j-1);
+              temp.pop_back();
+              mat[i][j]=1;
+          }
+      }
+    public:
+      vector<string> findPath(vector<vector<int>> &mat) {
+          vector<string> ans;
+          if(mat[0][0]==0) return ans;
+          string temp="";
+          rec(ans,temp,mat,0,0);
+          return ans;
+          
+      }
+  };
+
+Time Complexity: O(4^n)
+Space Complexity: O(n)
+
+Note: you can write in such a way that repitition not occurs
