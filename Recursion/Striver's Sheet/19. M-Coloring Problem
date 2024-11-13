@@ -1,0 +1,43 @@
+Approach: Using recursion, just go the node, check whether how many colors we have used, can we use any of them to color current node, if not then use new one.
+          Return total colors either when all nodes are colored or total no of colour exceeds than limit.
+
+Code:
+  private:
+    int rec(vector<vector<int>>& stages, vector<int>& colors, int v, int count, int cur_idx,int m){
+        if(cur_idx==v) return count;
+        for(int i=1;i<=count;i++){
+            bool flag = true;
+            for(auto it:stages[cur_idx]){
+                if(colors[it]==i){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag==true){
+                colors[cur_idx]=i;
+                break;
+            }
+        }
+        if(colors[cur_idx]==-1){
+            colors[cur_idx]=count+1;
+            count=count+1;
+        }
+        return rec(stages,colors,v,count,cur_idx+1,m);
+    }
+  public:
+    bool graphColoring(int v, vector<pair<int, int>>& edges, int m) {
+        vector<int>colors(v,-1);
+        int count = 1;
+        vector<vector<int>>stages(v);
+        for(auto it : edges) {
+            stages[it.first].push_back(it.second);
+            stages[it.second].push_back(it.first);
+        }
+        colors[0]=1;
+        count = rec(stages,colors,v,count,1,m);
+        if(count>m) return false;
+        else return true;
+    }
+
+Time Complexity: O(m * v²), where m is the number of colors, and v is the number of vertices in the graph.
+Space Complexity: O(E + v), where E is the number of edges, and v is the number of vertices.
